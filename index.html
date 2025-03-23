@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clock</title>
+</head>
+
+<body>
+    <div id="app">
+        <main class="app">
+            <p class="current-date">
+                <span id="week-day"></span>&nbsp;<span id="month"></span>&nbsp;<span id="day"></span>&comma;&nbsp;<span
+                    id="year"></span>
+            </p>
+            <h1 class="title">
+                <time>
+                    <span id="tenth-hour">0</span><span id="hour">0</span><span>:</span><span
+                        id="tenth-minute">0</span><span id="minute">0</span><span id="second-separator">:</span><span
+                        id="tenth-second">0</span><span id="second">0</span>&nbsp;<span id="ampm">--</span>
+                </time>
+            </h1>
+            <div class="buttons">
+                <button data-value="true" type="button" id="format-time">Switch to 24h</button><button data-value="true"
+                    type="button" id="toggle-seconds">Hide Seconds</button>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>

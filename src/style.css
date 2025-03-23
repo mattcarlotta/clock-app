@@ -1,0 +1,104 @@
+:root {
+    --background: #ffffff;
+    --foreground: #171717;
+    --spacing: 0.25rem;
+    --font-weight-bold: 700;
+    --space-x-reverse: 0;
+    --space-y-reverse: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #0a0a0a;
+        --foreground: #ededed;
+    }
+}
+
+html,
+body,
+main {
+    height: 100vh;
+}
+
+body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100vh;
+    font-size: 1rem;
+}
+
+.app {
+    padding: calc(var(--spacing)*6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.current-date {
+    font-size: 6vi;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: calc(var(--spacing)*6);
+    margin-block-start: calc(calc(var(--spacing)*2)*var(--space-y-reverse));
+    margin-block-end: calc(calc(var(--spacing)*2)*calc(1 - var(--space-y-reverse)));
+}
+
+.title {
+    font-size: 15vi;
+    font-weight: var(--font-weight-bold);
+    margin-block-start: calc(calc(var(--spacing)*2)*var(--space-y-reverse));
+    margin-block-end: calc(calc(var(--spacing)*2)*calc(1 - var(--space-y-reverse)));
+}
+
+.buttons {
+    display: flex;
+}
+
+.buttons> :not(:last-child) {
+    margin-inline-start: calc(calc(var(--spacing)*4)*var(--space-x-reverse));
+    margin-inline-end: calc(calc(var(--spacing)*4)*calc(1 - var(--space-x-reverse)));
+}
+
+#format-time {
+    font-size: 1rem;
+    cursor: pointer;
+    color: #fff;
+    padding: calc(var(--spacing)*3);
+    background-color: oklch(.546 .245 262.881);
+    border-radius: 0.25rem;
+    appearance: button;
+    width: calc(var(--spacing)*33);
+}
+
+#format-time:hover {
+    background-color: oklch(.488 .243 264.376);
+}
+
+#toggle-seconds {
+    font-size: 1rem;
+    cursor: pointer;
+    color: #fff;
+    padding: calc(var(--spacing)*3);
+    background-color: oklch(.591 .293 322.896);
+    border-radius: 0.25rem;
+    appearance: button;
+    width: calc(var(--spacing)*33);
+}
+
+#toggle-seconds:hover {
+    background-color: oklch(.518 .253 323.949);
+}
+
+.hidden {
+    display: none;
+}
+
+* {
+    box-sizing: border-box;
+    border: 0 solid;
+    margin: 0;
+    padding: 0;
+}
