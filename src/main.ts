@@ -1,4 +1,4 @@
-import { formatAsDayWithOrdinal, formatAsLongMonth, formatAsLongWeekDay, getTime } from "./utils";
+import { formatAsDayWithOrdinal, formatAsLongMonth, formatAsLongWeekDay } from "./utils";
 import "./style.css";
 
 const weekDayEl = document.getElementById("week-day")!;
@@ -20,60 +20,63 @@ let showAMPM = true;
 let showSeconds = true;
 
 function updateDate() {
-    const currentDate = new Date();
-    const currentTime = getTime(currentDate, showAMPM);
+    const date = new Date();
 
-    const weekday = formatAsLongWeekDay(currentDate.getDay());
+    const hours = date.getHours() - (date.getHours() > 12 && showAMPM ? 12 : 0);
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+
+    const weekday = formatAsLongWeekDay(date.getDay());
     if (weekDayEl.innerText !== weekday) {
         weekDayEl.innerText = weekday;
     }
 
-    const month = formatAsLongMonth(currentDate.getMonth());
+    const month = formatAsLongMonth(date.getMonth());
     if (monthEl.innerText !== month) {
         monthEl.innerText = month;
     }
 
-    const day = formatAsDayWithOrdinal(currentDate.getDate());
+    const day = formatAsDayWithOrdinal(date.getDate());
     if (dayEl.innerText !== day) {
         dayEl.innerText = day;
     }
 
-    const year = currentDate.getFullYear().toString();
+    const year = String(date.getFullYear());
     if (yearEl.innerText !== year) {
         yearEl.innerText = year;
     }
 
-    const tenthHour = currentTime[0];
+    const tenthHour = String(Math.floor(hours / 10));
     if (tenthHourEl.innerText !== tenthHour) {
         tenthHourEl.innerText = tenthHour;
     }
 
-    const hour = currentTime[1];
+    const hour = String(hours % 10);
     if (hourEl.innerText !== hour) {
         hourEl.innerText = hour;
     }
 
-    const tenthMinute = currentTime[2];
+    const tenthMinute = String(Math.floor(minutes / 10));
     if (tenthMinuteEl.innerText !== tenthMinute) {
         tenthMinuteEl.innerText = tenthMinute;
     }
 
-    const minute = currentTime[3];
+    const minute = String(minutes % 10);
     if (minuteEl.innerText !== minute) {
         minuteEl.innerText = minute;
     }
 
-    const tenthSecond = currentTime[4];
+    const tenthSecond = String(Math.floor(seconds / 10));
     if (tenthSecondEl.innerText !== tenthSecond) {
         tenthSecondEl.innerText = tenthSecond;
     }
 
-    const second = currentTime[5];
+    const second = String(seconds % 10);
     if (secondsEl.innerText !== second) {
         secondsEl.innerText = second;
     }
 
-    const ampm = currentDate.getHours() >= 12 ? "pm" : "am";
+    const ampm = date.getHours() >= 12 ? "pm" : "am";
     if (ampmEl.innerText !== ampm) {
         ampmEl.innerText = ampm;
     }

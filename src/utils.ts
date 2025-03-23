@@ -1,18 +1,3 @@
-export function getTime(date: Date, showAMPM: boolean) {
-    const hours = date.getHours() - (date.getHours() > 12 && showAMPM ? 12 : 0);
-    const minutes = date.getMinutes();
-    const seconds = date.getSeconds();
-
-    return [
-        String(Math.floor(hours / 10)),
-        String(hours % 10),
-        String(Math.floor(minutes / 10)),
-        String(minutes % 10),
-        String(Math.floor(seconds / 10)),
-        String(seconds % 10)
-    ];
-}
-
 export function formatAsDayWithOrdinal(d: number) {
     let ordinal = "";
     if (d > 3 && d < 21) ordinal = "th";
