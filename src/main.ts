@@ -17,7 +17,6 @@ const formatTimeButton = document.getElementById("format-time")!;
 const toggleSecondsButton = document.getElementById("toggle-seconds")!;
 
 let showAMPM = true;
-let showSeconds = true;
 
 function updateDate() {
     const date = new Date();
@@ -82,8 +81,11 @@ function updateDate() {
     }
 }
 
+let showSeconds = true;
+const ac = new AbortController();
+
 function toggleSeconds() {
-    const value = toggleSecondsButton.dataset.value;
+    const { value } = toggleSecondsButton.dataset;
 
     showSeconds = value === "true" ? false : true;
 
@@ -98,10 +100,8 @@ function toggleSeconds() {
     updateDate();
 }
 
-toggleSecondsButton.addEventListener("click", toggleSeconds);
-
 function toggleTimeFormat() {
-    const value = formatTimeButton.dataset.value;
+    const { value } = formatTimeButton.dataset;
 
     showAMPM = value === "true" ? false : true;
 
@@ -114,9 +114,9 @@ function toggleTimeFormat() {
     updateDate();
 }
 
-formatTimeButton.addEventListener("click", toggleTimeFormat);
-
 window.onload = () => {
+    toggleSecondsButton.addEventListener("click", toggleSeconds, { signal: ac.signal });
+    formatTimeButton.addEventListener("click", toggleTimeFormat, { signal: ac.signal });
     updateDate();
 };
 
@@ -126,6 +126,5 @@ const timer = setInterval(() => {
 
 window.addEventListener("beforeunload", () => {
     clearInterval(timer);
-    toggleSecondsButton.removeEventListener("click", toggleSeconds);
-    formatTimeButton.removeEventListener("click", toggleTimeFormat);
+    ac.abort();
 });
