@@ -119,7 +119,7 @@ window.onload = () => {
 
 const timer = setInterval(() => {
     updateDate();
-}, 1000);
+}, 100);
 
 window.addEventListener("beforeunload", () => {
     clearInterval(timer);
